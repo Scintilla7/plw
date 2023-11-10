@@ -65,10 +65,10 @@ class _LoginPageState extends State<LoginPage> {
                 hintText: "contoh@email.com",
                 prefixIcon: Icon(
                   Icons.mail,
-                ), // Change the color of the prefix icon
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20.0),
-                  borderSide: BorderSide(), // Change the color of the border
+                  borderSide: BorderSide(),
                 ),
               ),
             ),
@@ -114,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                     Color(0xFF242F9B),
-                  ), // Replace Colors.red with your desired color
+                  ),
                 ),
                 child: const Text("MASUK"),
               ),
@@ -135,8 +135,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      Navigator.pushNamed(context, '/registration');
                       print('Text is tapped!');
-                      // Navigate to the desired page here
                     },
                     child: Text(
                       'Daftar sekarang',
