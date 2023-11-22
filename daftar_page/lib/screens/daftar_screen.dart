@@ -1,27 +1,24 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:daftar_page/screens/login_screen.dart';
+import 'package:daftar_page/screens/otp_screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: DaftarPage(),
-      ),
+      home: DaftarPage(),
     );
   }
 }
 
 class DaftarPage extends StatefulWidget {
-  const DaftarPage({Key? key});
+  const DaftarPage({Key? key}) : super(key: key);
 
   @override
   _DaftarPageState createState() => _DaftarPageState();
@@ -56,7 +53,7 @@ class _DaftarPageState extends State<DaftarPage> {
                           ),
                         ),
                         const SizedBox(height: 16),
-                        Text(
+                        const Text(
                           'Selamat Datang',
                           style: TextStyle(
                             fontFamily: 'Inter',
@@ -66,8 +63,8 @@ class _DaftarPageState extends State<DaftarPage> {
                           ),
                         ),
                         const SizedBox(height: 101),
-                        Text(
-                          'Masukan nomor telepon anda',
+                        const Text(
+                          'Masukkan nomor telepon Anda',
                           style: TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 12,
@@ -81,38 +78,51 @@ class _DaftarPageState extends State<DaftarPage> {
                             FilteringTextInputFormatter.digitsOnly,
                             LengthLimitingTextInputFormatter(10),
                           ],
-                          decoration: InputDecoration(
-                            labelText: 'Phone Number',
-                            hintText: 'Enter your phone number',
+                          decoration: const InputDecoration(
+                            labelText: 'Nomor Telepon',
+                            hintText: 'Masukkan nomor telepon Anda',
                             prefixText: '+62 ',
                           ),
                           validator: (value) {
                             if (value != null && value.isEmpty) {
-                              return 'Please enter a phone number';
+                              return 'Mohon masukkan nomor telepon';
                             }
                             return null;
                           },
                           onChanged: (value) {},
                         ),
                         const SizedBox(height: 35),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState != null &&
-                                _formKey.currentState!.validate()) {
-                              print('Phone number is valid!');
-                            }
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                              Color(0xFF242F9B),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (_formKey.currentState != null &&
+                                  _formKey.currentState!.validate()) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const OTPPage()),
+                                );
+                              }
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                const Color(0xFF242F9B),
+                              ),
+                              minimumSize: MaterialStateProperty.all<Size>(
+                                const Size(200, 50),
+                              ),
                             ),
-                            minimumSize: MaterialStateProperty.all<Size>(
-                              Size(200, 50),
+                            child: const Text(
+                              "DAFTAR",
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 250, 250,
+                                    250), // Change the color of the text
+                              ),
                             ),
                           ),
-                          child: const Text("DAFTAR"),
                         ),
-                        SizedBox(height: 200),
+                        const SizedBox(height: 150),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Row(
@@ -123,10 +133,11 @@ class _DaftarPageState extends State<DaftarPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => LoginPage()),
+                                        builder: (context) =>
+                                            const LoginPage()),
                                   );
                                 },
-                                child: Text(
+                                child: const Text(
                                   'Sudah punya akun',
                                   style: TextStyle(
                                     fontFamily: 'Inter',

@@ -131,7 +131,13 @@ class _LoginPageState extends State<LoginPage> {
                                     50), // Set the width and height of the button
                               ),
                             ),
-                            child: const Text("MASUK"),
+                            child: const Text(
+                              "MASUK",
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 250, 250,
+                                    250), // Change the color of the text
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(height: 200),
