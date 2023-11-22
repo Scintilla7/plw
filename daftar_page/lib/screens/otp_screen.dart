@@ -84,7 +84,7 @@ class OTPPageState extends State<OTPPage> {
                   Container(
                     margin: const EdgeInsets.symmetric(vertical: 40),
                     child: const Text(
-                      "Masukan kode OTP yang terkirim ke nomor Anda",
+                      "Masukan kode OTP yang dikirim ke nomor Anda",
                       style: TextStyle(
                         color: Color(0xFF242F9B),
                         fontFamily: 'Inter',
