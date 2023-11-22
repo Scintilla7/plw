@@ -6,7 +6,7 @@ import 'package:pinput/pinput.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
 }
 
 class OTPPage extends StatefulWidget {
-  const OTPPage({Key? key});
+  const OTPPage({Key? key}) : super(key: key);
 
   @override
-  _OTPPageState createState() => _OTPPageState();
+  OTPPageState createState() => OTPPageState();
 }
 
-class _OTPPageState extends State<OTPPage> {
+class OTPPageState extends State<OTPPage> {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
