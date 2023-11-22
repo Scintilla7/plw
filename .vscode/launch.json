@@ -6,21 +6,21 @@
     "configurations": [
         {
             "name": "daftar_page",
-            "cwd": "daftar_page",
+            "cwd": "PLW_App",
             "request": "launch",
             "type": "dart",
             "program": "lib/screens/daftar_screen.dart"
         },
         {
             "name": "daftar_page (profile mode)",
-            "cwd": "daftar_page",
+            "cwd": "PLW_App",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
             "name": "daftar_page (release mode)",
-            "cwd": "daftar_page",
+            "cwd": "PLW_App",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
