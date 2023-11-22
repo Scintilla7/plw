@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:daftar_page/screens/daftar_screen.dart';
+import 'package:daftar_page/screens/home_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -195,6 +196,7 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.red,
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
       return;
     }
 
@@ -207,7 +209,12 @@ class _LoginPageState extends State<LoginPage> {
           actions: [
             TextButton(
               child: const Text('Ok'),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                );
+              },
             ),
           ],
         );

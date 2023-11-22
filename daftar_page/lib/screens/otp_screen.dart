@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:daftar_page/screens/daftar_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -48,7 +49,10 @@ class OTPPageState extends State<OTPPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const DaftarPage()),
+            );
           },
           color: Colors.white,
         ),
