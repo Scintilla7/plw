@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+
 import 'package:daftar_page/screens/daftar_screen.dart';
+import 'package:daftar_page/screens/buat_akun_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,6 +48,7 @@ class OTPPageState extends State<OTPPage> {
     );
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -106,7 +109,14 @@ class OTPPageState extends State<OTPPage> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  BuatAkunScreen()), // Replace `NextScreen` with the screen you want to navigate to
+                        );
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                           const Color(0xFF242F9B),
@@ -116,10 +126,9 @@ class OTPPageState extends State<OTPPage> {
                         ),
                       ),
                       child: const Text(
-                        "Konfirmasi",
+                        "KONFIRMASI",
                         style: TextStyle(
-                          color: Color.fromARGB(255, 250, 250,
-                              250), // Change the color of the text
+                          color: Color.fromARGB(255, 250, 250, 250),
                         ),
                       ),
                     ),
