@@ -49,8 +49,8 @@ class _DaftarPageState extends State<DaftarPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: 145,
-                          height: 160,
+                          width: 0.4 * constraints.maxWidth,
+                          height: 0.2 * constraints.maxHeight,
                           child: Image.asset(
                             'asset/logo_pwl.png',
                           ),
@@ -65,7 +65,7 @@ class _DaftarPageState extends State<DaftarPage> {
                             color: Color(0xFF242F9B),
                           ),
                         ),
-                        const SizedBox(height: 101),
+                        SizedBox(height: 0.1 * constraints.maxHeight),
                         const Text(
                           'Masukkan nomor telepon Anda',
                           style: TextStyle(
@@ -74,29 +74,31 @@ class _DaftarPageState extends State<DaftarPage> {
                             color: Color(0xFF242F9B),
                           ),
                         ),
-                        const SizedBox(height: 27),
-                        TextFormField(
-                          keyboardType: TextInputType.phone,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(10),
-                          ],
-                          decoration: const InputDecoration(
-                            labelText: 'Nomor Telepon',
-                            hintText: 'Masukkan nomor telepon Anda',
-                            prefixText: '+62 ',
+                        SizedBox(height: 0.05 * constraints.maxHeight),
+                        Flexible(
+                          child: TextFormField(
+                            keyboardType: TextInputType.phone,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(10),
+                            ],
+                            decoration: const InputDecoration(
+                              labelText: 'Nomor Telepon',
+                              hintText: 'Masukkan nomor telepon Anda',
+                              prefixText: '+62 ',
+                            ),
+                            validator: (value) {
+                              if (value != null && value.isEmpty) {
+                                return 'Mohon masukkan nomor telepon';
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {},
                           ),
-                          validator: (value) {
-                            if (value != null && value.isEmpty) {
-                              return 'Mohon masukkan nomor telepon';
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {},
                         ),
-                        const SizedBox(height: 35),
+                        SizedBox(height: 0.07 * constraints.maxHeight),
                         SizedBox(
-                          width: double.infinity,
+                          width: 0.8 * constraints.maxWidth,
                           child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState != null &&
@@ -125,7 +127,7 @@ class _DaftarPageState extends State<DaftarPage> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 150),
+                        SizedBox(height: 0.1 * constraints.maxHeight),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Row(
