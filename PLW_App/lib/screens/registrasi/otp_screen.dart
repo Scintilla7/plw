@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
-import 'package:daftar_page/screens/daftar_screen.dart';
-import 'package:daftar_page/screens/buat_akun_screen.dart';
+import 'package:daftar_page/screens/registrasi/daftar_screen.dart';
+import 'package:daftar_page/screens/registrasi/buat_akun_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,6 +29,7 @@ class OTPPage extends StatefulWidget {
   OTPPageState createState() => OTPPageState();
 }
 
+//TODO Buat verifikasi OTP berfungsi pake SMS
 class OTPPageState extends State<OTPPage> {
   @override
   Widget build(BuildContext context) {

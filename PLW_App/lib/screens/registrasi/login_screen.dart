@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:daftar_page/screens/daftar_screen.dart';
+import 'package:daftar_page/screens/registrasi/daftar_screen.dart';
 import 'package:daftar_page/screens/home_screen.dart';
 
 void main() => runApp(MyApp());
@@ -205,10 +205,20 @@ class _LoginPageState extends State<LoginPage> {
       builder: (context) {
         return AlertDialog(
           title: const Text("Login Berhasil"),
-          content: const Text("Selamat! Anda berhasil Login."),
+          content: const Text("Anda berhasil login."),
           actions: [
             TextButton(
-              child: const Text('Ok'),
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Color(0xFF242F9B)),
+              ),
+              child: const Text(
+                'OKE',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 250, 250, 250),
+                  fontFamily: 'Inter',
+                ),
+              ),
               onPressed: () {
                 Navigator.pushReplacement(
                   context,

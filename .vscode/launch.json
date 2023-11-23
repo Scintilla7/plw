@@ -9,7 +9,7 @@
             "cwd": "PLW_App",
             "request": "launch",
             "type": "dart",
-            "program": "lib/screens/daftar_screen.dart"
+            "program": "lib/screens/registrasi/daftar_screen.dart"
         },
         {
             "name": "daftar_page (profile mode)",

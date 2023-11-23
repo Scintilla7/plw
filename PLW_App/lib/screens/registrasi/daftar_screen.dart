@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:daftar_page/screens/login_screen.dart';
-import 'package:daftar_page/screens/otp_screen.dart';
+import 'package:daftar_page/screens/registrasi/login_screen.dart';
+import 'package:daftar_page/screens/registrasi/otp_screen.dart';
 
 void main() => runApp(const MyApp());
 
