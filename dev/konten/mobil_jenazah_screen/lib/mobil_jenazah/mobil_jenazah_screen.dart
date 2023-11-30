@@ -76,10 +76,83 @@ class _MobilJenazahScreenState extends State<MobilJenazahScreen> {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            'asset/mobiljenazah.png', // Replace with your image URL
+                          child: Image.asset(
+                            'asset/mobiljenazah.png', // Replace with your image asset path
                             fit: BoxFit.cover,
                           ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 150,
+                      top: 8,
+                      child: SizedBox(
+                        height: 128,
+                        width: 180,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Supir: ',
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 5),
+                              child: Text(
+                                'Mobil: ',
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 5),
+                              child: Text(
+                                'Kapasitas: ',
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 15), // Add some spacing
+                            // Use Align widget to center the button
+                            Align(
+                              alignment: Alignment.center,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  // Handle button press
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromARGB(255, 255, 255, 255),
+                                ),
+                                child: Text(
+                                  'HUBUNGI',
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(
+                                      0xFFF6982A,
+                                    ), // Change the color as needed
+                                  ),
+                                ),
+                              ),
+                            ),
+                            // Add more text widgets as needed
+                          ],
                         ),
                       ),
                     ),
@@ -112,10 +185,83 @@ class _MobilJenazahScreenState extends State<MobilJenazahScreen> {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            'asset/mobiljenazah2.png', // Replace with your image URL
+                          child: Image.asset(
+                            'asset/mobiljenazah2.png', // Replace with your image asset path
                             fit: BoxFit.cover,
                           ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 150,
+                      top: 8,
+                      child: SizedBox(
+                        height: 128,
+                        width: 180,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Supir: ',
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 5),
+                              child: Text(
+                                'Mobil: ',
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 5),
+                              child: Text(
+                                'Kapasitas: ',
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 15), // Add some spacing
+                            // Use Align widget to center the button
+                            Align(
+                              alignment: Alignment.center,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  // Handle button press
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromARGB(255, 255, 255, 255),
+                                ),
+                                child: Text(
+                                  'HUBUNGI',
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(
+                                      0xFFF6982A,
+                                    ), // Change the color as needed
+                                  ),
+                                ),
+                              ),
+                            ),
+                            // Add more text widgets as needed
+                          ],
                         ),
                       ),
                     ),
