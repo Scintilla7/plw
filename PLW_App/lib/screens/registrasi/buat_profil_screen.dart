@@ -178,22 +178,25 @@ class _BuatProfilScreenState extends State<BuatProfilScreen> {
                         const SizedBox(height: 20),
                         GestureDetector(
                           onTap: () => _getImageFromGallery(), // For KTP Image
-                          child: Container(
-                            width: double.infinity,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(20.0),
+                          child: Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              child: _ktpImage != null
+                                  ? Image.file(_ktpImage!, fit: BoxFit.cover)
+                                  : const Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.camera_alt, size: 50),
+                                          Text("Foto KTP"),
+                                        ],
+                                      ),
+                                    ),
                             ),
-                            child: _ktpImage != null
-                                ? Image.file(_ktpImage!)
-                                : const Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.camera_alt, size: 50),
-                                      Text("Foto KTP"),
-                                    ],
-                                  ),
                           ),
                         ),
                         const SizedBox(height: 35),

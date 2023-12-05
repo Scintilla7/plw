@@ -47,6 +47,7 @@ class OTPPageState extends State<OTPPage> {
         border: Border.all(color: const Color.fromARGB(255, 255, 255, 255)),
       ),
     );
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -72,7 +73,7 @@ class OTPPageState extends State<OTPPage> {
         backgroundColor: Color(0xFF242F9B),
         elevation: 0,
       ),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: const EdgeInsets.all(45),
         child: SizedBox(
           height: MediaQuery.of(context).size.height *
@@ -92,7 +93,7 @@ class OTPPageState extends State<OTPPage> {
                       style: TextStyle(
                         color: Color(0xFF242F9B),
                         fontFamily: 'Inter',
-                        fontSize: 13,
+                        fontSize: 12,
                       ),
                     ),
                   ),
@@ -114,8 +115,7 @@ class OTPPageState extends State<OTPPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  BuatAkunScreen()), // Replace `NextScreen` with the screen you want to navigate to
+                              builder: (context) => BuatAkunScreen()),
                         );
                       },
                       style: ButtonStyle(
