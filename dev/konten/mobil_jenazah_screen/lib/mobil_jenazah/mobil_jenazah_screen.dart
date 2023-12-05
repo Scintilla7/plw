@@ -128,25 +128,25 @@ class _MobilJenazahScreenState extends State<MobilJenazahScreen> {
                             ),
                             SizedBox(height: 15), // Add some spacing
                             // Use Align widget to center the button
-                            Align(
-                              alignment: Alignment.center,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  // Handle button press
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Color.fromARGB(255, 255, 255, 255),
-                                ),
-                                child: Text(
-                                  'HUBUNGI',
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(
-                                      0xFFF6982A,
-                                    ), // Change the color as needed
+                            Expanded(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    // Handle button press
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Color.fromARGB(255, 255, 255, 255),
+                                  ),
+                                  child: Text(
+                                    'HUBUNGI',
+                                    style: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFF6982A),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -237,25 +237,25 @@ class _MobilJenazahScreenState extends State<MobilJenazahScreen> {
                             ),
                             SizedBox(height: 15), // Add some spacing
                             // Use Align widget to center the button
-                            Align(
-                              alignment: Alignment.center,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  // Handle button press
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Color.fromARGB(255, 255, 255, 255),
-                                ),
-                                child: Text(
-                                  'HUBUNGI',
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(
-                                      0xFFF6982A,
-                                    ), // Change the color as needed
+                            Expanded(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    // Handle button press
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Color.fromARGB(255, 255, 255, 255),
+                                  ),
+                                  child: Text(
+                                    'HUBUNGI',
+                                    style: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFF6982A),
+                                    ),
                                   ),
                                 ),
                               ),
