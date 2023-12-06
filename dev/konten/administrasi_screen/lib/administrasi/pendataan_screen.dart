@@ -2,8 +2,13 @@
 
 import 'package:flutter/material.dart';
 
-// import 'package:daftar_page/screens/otp_screen.dart';
-// import 'package:daftar_page/screens/registrasi/buat_profil_screen.dart';
+import 'package:administrasi_screen/administrasi/penduduk_tetap_screen.dart';
+import 'package:administrasi_screen/administrasi/penduduk_tidak_tetap_screen.dart';
+import 'package:administrasi_screen/administrasi/tamu_wajib_lapor_screen.dart';
+import 'package:administrasi_screen/administrasi/penduduk_pindah_screen.dart';
+import 'package:administrasi_screen/administrasi/daftar_keluarga_screen.dart';
+import 'package:administrasi_screen/administrasi/sktm_screen.dart';
+import 'package:administrasi_screen/administrasi/laporan_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -54,7 +59,11 @@ class _PendataanScreenState extends State<PendataanScreen> {
               SizedBox(height: 16),
               InkWell(
                 onTap: () {
-                  // Add your button action here
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PendudukTetapScreen()),
+                  );
                   print("Button pressed!");
                 },
                 child: SizedBox(
@@ -121,7 +130,11 @@ class _PendataanScreenState extends State<PendataanScreen> {
               SizedBox(height: 16),
               InkWell(
                 onTap: () {
-                  // Add your button action here
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PendudukTidakTetapScreen()),
+                  );
                   print("Button pressed!");
                 },
                 child: SizedBox(
@@ -188,7 +201,11 @@ class _PendataanScreenState extends State<PendataanScreen> {
               SizedBox(height: 16),
               InkWell(
                 onTap: () {
-                  // Add your button action here
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const TamuWajibLaporScreen()),
+                  );
                   print("Button pressed!");
                 },
                 child: SizedBox(
@@ -255,7 +272,11 @@ class _PendataanScreenState extends State<PendataanScreen> {
               SizedBox(height: 16),
               InkWell(
                 onTap: () {
-                  // Add your button action here
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PendudukPindahScreen()),
+                  );
                   print("Button pressed!");
                 },
                 child: SizedBox(
@@ -322,7 +343,11 @@ class _PendataanScreenState extends State<PendataanScreen> {
               SizedBox(height: 16),
               InkWell(
                 onTap: () {
-                  // Add your button action here
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DaftarKeluargaScreen()),
+                  );
                   print("Button pressed!");
                 },
                 child: SizedBox(
@@ -389,7 +414,10 @@ class _PendataanScreenState extends State<PendataanScreen> {
               SizedBox(height: 16),
               InkWell(
                 onTap: () {
-                  // Add your button action here
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SKTMScreen()),
+                  );
                   print("Button pressed!");
                 },
                 child: SizedBox(
@@ -456,7 +484,11 @@ class _PendataanScreenState extends State<PendataanScreen> {
               SizedBox(height: 16),
               InkWell(
                 onTap: () {
-                  // Add your button action here
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LaporanScreen()),
+                  );
                   print("Button pressed!");
                 },
                 child: SizedBox(

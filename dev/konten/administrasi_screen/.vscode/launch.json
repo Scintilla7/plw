@@ -8,7 +8,7 @@
             "name": "administrasi_screen",
             "request": "launch",
             "type": "dart",
-            "program": "lib/pendataan_screen.dart",
+            "program": "lib/administrasi/pendataan_screen.dart",
             "flutterMode": "debug"
         },
         {
