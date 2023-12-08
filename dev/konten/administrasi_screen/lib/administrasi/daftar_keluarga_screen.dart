@@ -101,6 +101,35 @@ class _DaftarKeluargaScreenState extends State<DaftarKeluargaScreen> {
                   },
                   child: Text("Tambah Baris"),
                 ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Validate the form before proceeding
+                      if (_formKey.currentState!.validate()) {
+                        // All fields are valid, you can proceed with your logic
+                        // For example, you can call a function to save the data
+                        // saveData();
+                      }
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color(0xFF242F9B),
+                      ),
+                      minimumSize: MaterialStateProperty.all<Size>(
+                        const Size(200, 50),
+                      ),
+                    ),
+                    child: const Text(
+                      "AJUKAN",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
               ],
             ),
           ),
@@ -111,9 +140,25 @@ class _DaftarKeluargaScreenState extends State<DaftarKeluargaScreen> {
 
   Widget _buildTable() {
     return Table(
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      border: TableBorder(
+        top: BorderSide(width: 1.0),
+        left: BorderSide(width: 1.0),
+        right: BorderSide(width: 1.0),
+        bottom: BorderSide(width: 1.0),
+        horizontalInside: BorderSide(width: 1.0),
+        verticalInside: BorderSide(width: 1.0),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16.0),
+          topRight: Radius.circular(16.0),
+          bottomLeft: Radius.circular(16.0),
+          bottomRight: Radius.circular(16.0),
+        ),
+      ),
       columnWidths: {
-        0: FlexColumnWidth(1), // Adjust column widths as needed
-        1: FlexColumnWidth(2),
+        0: FlexColumnWidth(2.0),
+        1: FlexColumnWidth(2.0),
+        2: FlexColumnWidth(1.0),
       },
       children: _tableRows,
     );
@@ -121,47 +166,66 @@ class _DaftarKeluargaScreenState extends State<DaftarKeluargaScreen> {
 
   void _addTableRow() {
     setState(() {
-      _tableRows.add(
-        TableRow(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                maxLines: 1,
-                decoration: InputDecoration(
-                  labelText: "NIK",
-                  hintText: "Masukkan NIK",
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                maxLines: 1,
-                decoration: InputDecoration(
-                  labelText: "Nama",
-                  hintText: "Masukkan Nama",
-                ),
-              ),
-            ),
-            IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: () {
-                // Remove the row when delete button is pressed
-                _removeTableRow(_tableRows.length - 1);
-              },
-            ),
-          ],
-        ),
-      );
+      _tableRows.add(_buildRow());
     });
   }
 
-  void _removeTableRow(int index) {
+  TableRow _buildRow() {
+    return TableRow(
+      children: [
+        _buildTableCell(TextFormField(
+          decoration: InputDecoration(
+            labelText: "NIK",
+            hintText: "Masukkan NIK",
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Mohon masukkan NIK';
+            }
+            return null;
+          },
+        )),
+        _buildTableCell(TextFormField(
+          decoration: InputDecoration(
+            labelText: "Nama",
+            hintText: "Masukkan Nama",
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Mohon masukkan nama';
+            }
+            return null;
+          },
+        )),
+        _buildTableCell(
+          IconButton(
+            icon: Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+            onPressed: () {
+              _removeTableRow();
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _removeTableRow() {
     setState(() {
-      if (_tableRows.length > 1) {
-        _tableRows.removeAt(index);
+      if (_tableRows.isNotEmpty) {
+        _tableRows.removeLast();
       }
     });
+  }
+
+  Widget _buildTableCell(Widget child) {
+    return TableCell(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: child,
+      ),
+    );
   }
 }

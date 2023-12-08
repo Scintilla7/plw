@@ -36,7 +36,7 @@ class LaporanScreen extends StatefulWidget {
 class _LaporanScreenState extends State<LaporanScreen> {
   final _formKey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
-  File? _laporanImage;
+  File? _laporanImage; //* Ganti variabel file image disini
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -195,7 +195,7 @@ class _LaporanScreenState extends State<LaporanScreen> {
                 ),
                 const SizedBox(height: 16),
                 GestureDetector(
-                  onTap: () => _getImageFromGallery(), // For KTP Image
+                  onTap: () => _getImageFromGallery(), 
                   child: Expanded(
                     child: Container(
                       decoration: BoxDecoration(

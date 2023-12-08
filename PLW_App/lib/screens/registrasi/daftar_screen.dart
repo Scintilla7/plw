@@ -52,7 +52,7 @@ class _DaftarPageState extends State<DaftarPage> {
                           width: 0.4 * constraints.maxWidth,
                           height: 0.2 * constraints.maxHeight,
                           child: Image.asset(
-                            'asset/logo_pwl.png',
+                            'asset/logo_pwl.png', //*Ganti path file disini
                           ),
                         ),
                         const SizedBox(height: 16),
