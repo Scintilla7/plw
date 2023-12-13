@@ -66,7 +66,7 @@ class _BuatProfilScreenState extends State<BuatProfilScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // automaticallyImplyLeading: false,
+        //TODO automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text(
           'Buat Profil',
@@ -164,6 +164,7 @@ class _BuatProfilScreenState extends State<BuatProfilScreen> {
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
                           ],
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             labelText: "NIK",
                             hintText: "Masukkan NIK",

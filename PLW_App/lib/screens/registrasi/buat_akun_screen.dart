@@ -37,7 +37,7 @@ class _BuatAkunScreenState extends State<BuatAkunScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // automaticallyImplyLeading: false,
+        //TODO automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
           'Buat Akun',

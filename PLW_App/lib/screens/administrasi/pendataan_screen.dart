@@ -3,13 +3,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:administrasi_screen/administrasi/penduduk_tetap_screen.dart';
-import 'package:administrasi_screen/administrasi/penduduk_tidak_tetap_screen.dart';
-import 'package:administrasi_screen/administrasi/tamu_wajib_lapor_screen.dart';
-import 'package:administrasi_screen/administrasi/penduduk_pindah_screen.dart';
-import 'package:administrasi_screen/administrasi/daftar_keluarga_screen.dart';
-import 'package:administrasi_screen/administrasi/sktm_screen.dart';
-import 'package:administrasi_screen/administrasi/laporan_screen.dart';
+import 'package:daftar_page/screens/administrasi/penduduk_tetap_screen.dart';
+import 'package:daftar_page/screens/administrasi/penduduk_tidak_tetap_screen.dart';
+import 'package:daftar_page/screens/administrasi/tamu_wajib_lapor_screen.dart';
+import 'package:daftar_page/screens/administrasi/penduduk_pindah_screen.dart';
+import 'package:daftar_page/screens/administrasi/daftar_keluarga_screen.dart';
+import 'package:daftar_page/screens/administrasi/sktm_screen.dart';
+import 'package:daftar_page/screens/administrasi/laporan_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -51,6 +51,7 @@ class _PendataanScreenState extends State<PendataanScreen> {
         ),
         backgroundColor: Color(0xFF242F9B),
         elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 33.0),

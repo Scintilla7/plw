@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables
 
-import 'package:administrasi_screen/administrasi/pendataan_screen.dart';
+import 'package:daftar_page/screens/administrasi/pendataan_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
