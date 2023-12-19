@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 
 import 'package:daftar_page/screens/administrasi/pendataan_screen.dart';
 
+import 'surat_penduduk_tidak_tetap_screen.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -386,10 +388,16 @@ class _PendudukTidakTetapScreenState extends State<PendudukTidakTetapScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Validate the form before proceeding
-                      if (_formKey.currentState!.validate()) {
-                        // All fields are valid, you can proceed with your logic
-                        // For example, you can call a function to save the data
-                        // saveData();
+                      //TODO if (_formKey.currentState!.validate())
+                      {
+                        // All fields are valid, navigate to the destination screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const SuratPendudukTidakTetapScreen(),
+                          ),
+                        );
                       }
                     },
                     style: ButtonStyle(

@@ -1,10 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:daftar_page/screens/registrasi/buat_akun_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:daftar_page/screens/registrasi/login_screen.dart';
-import 'package:daftar_page/screens/registrasi/otp_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -67,7 +67,7 @@ class _DaftarPageState extends State<DaftarPage> {
                         ),
                         SizedBox(height: 0.1 * constraints.maxHeight),
                         const Text(
-                          'Masukkan nomor telepon Anda',
+                          'Masukkan Email Anda',
                           style: TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 12,
@@ -77,19 +77,19 @@ class _DaftarPageState extends State<DaftarPage> {
                         SizedBox(height: 0.05 * constraints.maxHeight),
                         Flexible(
                           child: TextFormField(
-                            keyboardType: TextInputType.phone,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly,
-                              LengthLimitingTextInputFormatter(10),
-                            ],
-                            decoration: const InputDecoration(
-                              labelText: 'Nomor Telepon',
-                              hintText: 'Masukkan nomor telepon Anda',
-                              prefixText: '+62 ',
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              hintText: 'Masukkan Email',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                                borderSide: const BorderSide(),
+                              ),
+                              prefixIcon: const Icon(
+                                  Icons.email), // Add prefix email icon
                             ),
                             validator: (value) {
                               if (value != null && value.isEmpty) {
-                                return 'Mohon masukkan nomor telepon';
+                                return 'Mohon masukkan email';
                               }
                               return null;
                             },
@@ -106,7 +106,8 @@ class _DaftarPageState extends State<DaftarPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const OTPPage()),
+                                      builder: (context) =>
+                                          const BuatAkunScreen()),
                                 );
                               }
                             },

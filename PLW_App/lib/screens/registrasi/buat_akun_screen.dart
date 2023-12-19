@@ -29,9 +29,11 @@ class BuatAkunScreen extends StatefulWidget {
 }
 
 class _BuatAkunScreenState extends State<BuatAkunScreen> {
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordconfirmController =
+      TextEditingController();
   bool _isPasswordVisible = false;
+  bool _isPasswordConfirmVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -67,23 +69,6 @@ class _BuatAkunScreenState extends State<BuatAkunScreen> {
                       children: [
                         const SizedBox(height: 0),
                         TextFormField(
-                          controller: _emailController,
-                          maxLines: 1,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            labelText: "Email",
-                            hintText: "contoh@email.com",
-                            prefixIcon: Icon(
-                              Icons.mail,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
                           controller: _passwordController,
                           maxLines: 1,
                           keyboardType: TextInputType.visiblePassword,
@@ -112,14 +97,45 @@ class _BuatAkunScreenState extends State<BuatAkunScreen> {
                             ),
                           ),
                         ),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                          controller: _passwordconfirmController,
+                          maxLines: 1,
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: !_isPasswordConfirmVisible,
+                          decoration: InputDecoration(
+                            labelText: "Konfirmasi Password",
+                            hintText: "Masukkan Ulang Password",
+                            prefixIcon: Icon(
+                              Icons.lock,
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _isPasswordConfirmVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isPasswordConfirmVisible =
+                                      !_isPasswordConfirmVisible;
+                                });
+                              },
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(),
+                            ),
+                          ),
+                        ),
                         const SizedBox(height: 35),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () => submit(
                               context,
-                              _emailController.text,
                               _passwordController.text,
+                              _passwordconfirmController.text,
                             ),
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
@@ -153,12 +169,23 @@ class _BuatAkunScreenState extends State<BuatAkunScreen> {
   void submit(BuildContext context, String email, String password) {
     if (email.isEmpty || password.isEmpty) {
       final snackBar = SnackBar(
-        duration: const Duration(seconds: 5),
-        content: const Text("Email dan Password tidak boleh kosong!"),
+        duration: const Duration(seconds: 2),
+        content:
+            const Text("Password dan Konfirmasi Password tidak boleh kosong!"),
         backgroundColor: Colors.red,
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
+      return;
+    }
+
+    if (_passwordController.text != _passwordconfirmController.text) {
+      final snackBar = SnackBar(
+        duration: const Duration(seconds: 2),
+        content: const Text("Password dan Konfirmasi Password harus sama!"),
+        backgroundColor: Colors.red,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       return;
     }
 

@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:daftar_page/screens/administrasi/surat_penduduk_tetap_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -385,10 +386,16 @@ class _PendudukTetapScreenState extends State<PendudukTetapScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Validate the form before proceeding
-                      if (_formKey.currentState!.validate()) {
-                        // All fields are valid, you can proceed with your logic
-                        // For example, you can call a function to save the data
-                        // saveData();
+                      //TODO if (_formKey.currentState!.validate())
+                      {
+                        // All fields are valid, navigate to the destination screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const SuratPendudukTetapScreen(),
+                          ),
+                        );
                       }
                     },
                     style: ButtonStyle(
