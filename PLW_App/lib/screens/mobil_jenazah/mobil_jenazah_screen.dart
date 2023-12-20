@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, library_private_types_in_public_api
 
-import 'package:daftar_page/screens/mobil_jenazah/daftar_mobil_jenazah_screen.dart';
+import 'package:PLW/screens/mobil_jenazah/daftar_mobil_jenazah_screen.dart';
 import 'package:flutter/material.dart';
 
 // import 'package:daftar_page/screens/otp_screen.dart';

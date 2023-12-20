@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables
 
-import 'package:daftar_page/screens/administrasi/pendataan_screen.dart';
+import 'package:PLW/screens/administrasi/pendataan_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'surat_sktm_screen.dart';

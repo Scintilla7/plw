@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 // import 'package:daftar_page/screens/otp_screen.dart';
-import 'package:daftar_page/screens/registrasi/buat_profil_screen.dart';
+import 'package:PLW/screens/registrasi/buat_profil_screen.dart';
 
 void main() => runApp(MyApp());
 

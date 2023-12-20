@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:daftar_page/screens/registrasi/daftar_screen.dart';
-import 'package:daftar_page/screens/home_screen.dart';
+import 'package:PLW/screens/registrasi/daftar_screen.dart';
+import 'package:PLW/screens/home_screen.dart';
 
 void main() => runApp(MyApp());
 

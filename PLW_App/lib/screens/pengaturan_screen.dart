@@ -154,18 +154,18 @@ class _PengaturanScreenState extends State<PengaturanScreen> {
                                     TextEditingController newEmailController =
                                         TextEditingController();
                                     return AlertDialog(
-                                      title: const Text("Enter New Email"),
+                                      title: const Text("Ganti Email"),
                                       content: TextFormField(
                                         controller: newEmailController,
                                         decoration: const InputDecoration(
-                                            labelText: "New Email"),
+                                            labelText: "Masukkan Email"),
                                       ),
                                       actions: [
                                         TextButton(
                                           onPressed: () {
                                             Navigator.pop(context, null);
                                           },
-                                          child: const Text('Cancel'),
+                                          child: const Text('Batal'),
                                         ),
                                         TextButton(
                                           onPressed: () {
@@ -218,7 +218,7 @@ class _PengaturanScreenState extends State<PengaturanScreen> {
                                         newPasswordController =
                                         TextEditingController();
                                     return AlertDialog(
-                                      title: const Text("Enter New Password"),
+                                      title: const Text("Ganti Kata Sandi"),
                                       content: StatefulBuilder(
                                         builder: (BuildContext context,
                                             StateSetter setState) {
@@ -227,7 +227,7 @@ class _PengaturanScreenState extends State<PengaturanScreen> {
                                             obscureText:
                                                 !_isPasswordVisible, // Use the !_isPasswordVisible variable
                                             decoration: InputDecoration(
-                                              labelText: "New Password",
+                                              labelText: "Masukkan Kata Sandi",
                                               suffixIcon: IconButton(
                                                 onPressed: () {
                                                   // Toggle the visibility of the password
@@ -252,7 +252,7 @@ class _PengaturanScreenState extends State<PengaturanScreen> {
                                             Navigator.pop(
                                                 context, null); // Cancel
                                           },
-                                          child: const Text('Cancel'),
+                                          child: const Text('Batal'),
                                         ),
                                         TextButton(
                                           onPressed: () {

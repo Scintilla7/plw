@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-import 'package:daftar_page/screens/home_screen.dart';
+import 'package:PLW/screens/home_screen.dart';
 
 void main() => runApp(const MyApp());
 

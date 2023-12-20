@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-import 'package:daftar_page/screens/administrasi/pendataan_screen.dart';
+import 'package:PLW/screens/administrasi/pendataan_screen.dart';
 
 void main() => runApp(const MyApp());
 

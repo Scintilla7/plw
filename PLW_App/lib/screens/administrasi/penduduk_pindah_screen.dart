@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-import 'package:daftar_page/screens/administrasi/pendataan_screen.dart';
+import 'package:PLW/screens/administrasi/pendataan_screen.dart';
 
 import 'surat_penduduk_pindah_screen.dart';
 

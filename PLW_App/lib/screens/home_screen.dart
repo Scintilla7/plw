@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:daftar_page/screens/jajanan/jajanan_screen.dart';
-import 'package:daftar_page/screens/registrasi/login_screen.dart';
+import 'package:PLW/screens/jajanan/jajanan_screen.dart';
+import 'package:PLW/screens/registrasi/login_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'berita/berita_screen.dart';

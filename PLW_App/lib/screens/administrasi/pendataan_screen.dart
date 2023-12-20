@@ -3,13 +3,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:daftar_page/screens/administrasi/penduduk_tetap_screen.dart';
-import 'package:daftar_page/screens/administrasi/penduduk_tidak_tetap_screen.dart';
-import 'package:daftar_page/screens/administrasi/tamu_wajib_lapor_screen.dart';
-import 'package:daftar_page/screens/administrasi/penduduk_pindah_screen.dart';
-import 'package:daftar_page/screens/administrasi/daftar_keluarga_screen.dart';
-import 'package:daftar_page/screens/administrasi/sktm_screen.dart';
-import 'package:daftar_page/screens/administrasi/laporan_screen.dart';
+import 'package:PLW/screens/administrasi/penduduk_tetap_screen.dart';
+import 'package:PLW/screens/administrasi/penduduk_tidak_tetap_screen.dart';
+import 'package:PLW/screens/administrasi/tamu_wajib_lapor_screen.dart';
+import 'package:PLW/screens/administrasi/penduduk_pindah_screen.dart';
+import 'package:PLW/screens/administrasi/daftar_keluarga_screen.dart';
+import 'package:PLW/screens/administrasi/sktm_screen.dart';
+import 'package:PLW/screens/administrasi/laporan_screen.dart';
 
 void main() => runApp(MyApp());
 
