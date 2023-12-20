@@ -238,7 +238,7 @@ class _BuatJanjiTemuScreenState extends State<BuatJanjiTemuScreen> {
                         minimumSize: const Size(
                             double.infinity, 50), // Warna teks tombol
                       ),
-                      child: const Text('Buat Janji Temu'),
+                      child: const Text('BUAT JANJI TEMU'),
                     ),
                   ),
                 ],

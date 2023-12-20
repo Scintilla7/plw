@@ -6,8 +6,6 @@ import 'package:intl/intl.dart';
 
 import 'package:PLW/screens/administrasi/pendataan_screen.dart';
 
-import 'surat_penduduk_pindah_screen.dart';
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -408,16 +406,10 @@ class _PendudukPindahScreenState extends State<PendudukPindahScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Validate the form before proceeding
-                      //TODO if (_formKey.currentState!.validate())
+                      // TODO if (_formKey.currentState!.validate())
                       {
-                        // All fields are valid, navigate to the destination screen
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const SuratPendudukPindahScreen(),
-                          ),
-                        );
+                        // All fields are valid, show the success dialog
+                        _showSuccessDialog(context);
                       }
                     },
                     style: ButtonStyle(
@@ -444,4 +436,25 @@ class _PendudukPindahScreenState extends State<PendudukPindahScreen> {
       ),
     );
   }
+}
+
+void _showSuccessDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Pengajuan Berhasil"),
+        content: const Text("Data Anda sudah terkirim"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // You can add additional actions here if needed
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: const Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
 }

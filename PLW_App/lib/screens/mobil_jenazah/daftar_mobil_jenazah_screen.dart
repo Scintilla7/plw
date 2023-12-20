@@ -353,6 +353,11 @@ class _DaftarMobilJenazahScreenState extends State<DaftarMobilJenazahScreen> {
                         if (_formKey.currentState!.validate()) {
                           // Lakukan sesuatu setelah tombol submit ditekan
                           // Misalnya, kirim data ke server atau tampilkan pesan sukses
+
+                          {
+                            // All fields are valid, show the success dialog
+                            _showSuccessDialog(context);
+                          }
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -372,4 +377,25 @@ class _DaftarMobilJenazahScreenState extends State<DaftarMobilJenazahScreen> {
       ),
     );
   }
+}
+
+void _showSuccessDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Pengajuan Berhasil"),
+        content: const Text("Data Anda sudah terkirim"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // You can add additional actions here if needed
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: const Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
 }

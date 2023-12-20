@@ -197,7 +197,7 @@ class _LaporanScreenState extends State<LaporanScreen> {
                 ),
                 const SizedBox(height: 16),
                 GestureDetector(
-                  onTap: () => _getImageFromGallery(), 
+                  onTap: () => _getImageFromGallery(),
                   child: Expanded(
                     child: Container(
                       decoration: BoxDecoration(
@@ -227,10 +227,10 @@ class _LaporanScreenState extends State<LaporanScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Validate the form before proceeding
-                      if (_formKey.currentState!.validate()) {
-                        // All fields are valid, you can proceed with your logic
-                        // For example, you can call a function to save the data
-                        // saveData();
+                      // TODO if (_formKey.currentState!.validate())
+                      {
+                        // All fields are valid, show the success dialog
+                        _showSuccessDialog(context);
                       }
                     },
                     style: ButtonStyle(
@@ -257,4 +257,25 @@ class _LaporanScreenState extends State<LaporanScreen> {
       ),
     );
   }
+}
+
+void _showSuccessDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Laporan Berhasil"),
+        content: const Text("Laporan Anda sudah terkirim"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // You can add additional actions here if needed
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: const Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
 }

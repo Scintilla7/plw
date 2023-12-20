@@ -3,7 +3,6 @@
 import 'package:PLW/screens/administrasi/pendataan_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'surat_sktm_screen.dart';
 // import 'package:flutter/services.dart';
 
 // import 'package:daftar_page/screens/otp_screen.dart';
@@ -96,15 +95,10 @@ class _SKTMScreenState extends State<SKTMScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             // Validate the form before proceeding
-                            //TODO if (_formKey.currentState!.validate())
+                            // TODO if (_formKey.currentState!.validate())
                             {
-                              // All fields are valid, navigate to the destination screen
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SuratSKTMScreen(),
-                                ),
-                              );
+                              // All fields are valid, show the success dialog
+                              _showSuccessDialog(context);
                             }
                           },
                           style: ButtonStyle(
@@ -137,4 +131,25 @@ class _SKTMScreenState extends State<SKTMScreen> {
                       ),
                     ])))));
   }
+}
+
+void _showSuccessDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Pengajuan Berhasil"),
+        content: const Text("Data Anda sudah terkirim"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // You can add additional actions here if needed
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: const Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
 }

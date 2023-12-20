@@ -107,10 +107,10 @@ class _DaftarKeluargaScreenState extends State<DaftarKeluargaScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Validate the form before proceeding
-                      if (_formKey.currentState!.validate()) {
-                        // All fields are valid, you can proceed with your logic
-                        // For example, you can call a function to save the data
-                        // saveData();
+                      // TODO if (_formKey.currentState!.validate())
+                      {
+                        // All fields are valid, show the success dialog
+                        _showSuccessDialog(context);
                       }
                     },
                     style: ButtonStyle(
@@ -228,4 +228,25 @@ class _DaftarKeluargaScreenState extends State<DaftarKeluargaScreen> {
       ),
     );
   }
+}
+
+void _showSuccessDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Pengajuan Berhasil"),
+        content: const Text("Data Anda sudah terkirim"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // You can add additional actions here if needed
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: const Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
 }
