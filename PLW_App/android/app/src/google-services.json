@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "142180136648",
+    "project_id": "pwldatabase",
+    "storage_bucket": "pwldatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142180136648:android:dedd2178588e34c15b17fd",
+        "android_client_info": {
+          "package_name": "com.example.daftar_page"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEVyE7rBymnHQ5rpXBack13qoLtUaEpl0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

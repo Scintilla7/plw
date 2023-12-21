@@ -1,7 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:PLW/screens/registrasi/buat_akun_screen.dart';
 import 'package:flutter/material.dart';
+
+
+import 'package:PLW/screens/registrasi/buat_akun_screen.dart';
 
 import 'package:PLW/screens/registrasi/login_screen.dart';
 
@@ -28,6 +30,9 @@ class DaftarPage extends StatefulWidget {
 
 class _DaftarPageState extends State<DaftarPage> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _usernameController = TextEditingController();
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +71,7 @@ class _DaftarPageState extends State<DaftarPage> {
                         ),
                         SizedBox(height: 0.1 * constraints.maxHeight),
                         const Text(
-                          'Masukkan Email Anda',
+                          'Masukkan Nama Anda',
                           style: TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 12,
@@ -76,19 +81,20 @@ class _DaftarPageState extends State<DaftarPage> {
                         SizedBox(height: 0.05 * constraints.maxHeight),
                         Flexible(
                           child: TextFormField(
+                            controller: _usernameController,
                             decoration: InputDecoration(
-                              labelText: 'Email',
-                              hintText: 'Masukkan Email',
+                              labelText: 'Nama',
+                              hintText: 'Masukkan Nama',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20.0),
                                 borderSide: const BorderSide(),
                               ),
                               prefixIcon: const Icon(
-                                  Icons.email), // Add prefix email icon
+                                  Icons.person), // Add prefix email icon
                             ),
                             validator: (value) {
                               if (value != null && value.isEmpty) {
-                                return 'Mohon masukkan email';
+                                return 'Mohon masukkan nama Anda';
                               }
                               return null;
                             },

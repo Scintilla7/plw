@@ -338,6 +338,42 @@ class _HomeProfileScreenState extends State<HomeProfileScreen> {
   final TextEditingController _teleponController =
       TextEditingController(text: "0813-6543-1269");
 
+       Future<void> handleEditAction() async {
+    String? newValue = await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        TextEditingController newController = TextEditingController();
+        return AlertDialog(
+          title: const Text("Edit Value"),
+          content: TextFormField(
+            controller: newController,
+            decoration: const InputDecoration(labelText: "Enter new value"),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, null);
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, newController.text);
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (newValue != null && newValue.isNotEmpty) {
+      setState(() {
+        _teleponController.text = newValue;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -433,7 +469,7 @@ class _HomeProfileScreenState extends State<HomeProfileScreen> {
                               ),
                             ),
                             const SizedBox(height: 20),
-                            TextFormField(
+                           TextFormField(
                               controller: _teleponController,
                               maxLines: 1,
                               readOnly: true,
@@ -441,6 +477,10 @@ class _HomeProfileScreenState extends State<HomeProfileScreen> {
                                 labelText: "Nomor Telepon",
                                 prefixIcon: const Icon(
                                   Icons.phone,
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: const Icon(Icons.edit),
+                                  onPressed: handleEditAction,
                                 ),
                                 labelStyle:
                                     const TextStyle(color: Color(0xFF242F9B)),
@@ -456,6 +496,7 @@ class _HomeProfileScreenState extends State<HomeProfileScreen> {
                                 ),
                               ),
                             ),
+
                             const SizedBox(height: 55),
                             SizedBox(
                               width: double.infinity,
@@ -464,11 +505,11 @@ class _HomeProfileScreenState extends State<HomeProfileScreen> {
                                 child: ElevatedButton(
                                   onPressed: () => (
                                     Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const PengaturanScreen()),
-                                                ),
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const PengaturanScreen()),
+                                    ),
                                   ),
                                   style: ButtonStyle(
                                     backgroundColor:

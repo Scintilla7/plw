@@ -8,7 +8,7 @@
             "name": "PLW_App",
             "request": "launch",
             "type": "dart",
-            "program": "lib/screens/registrasi/daftar_screen.dart",
+            "program": "lib/screens/registrasi/main.dart",
         },
         {
             "name": "PLW_App (profile mode)",

@@ -1,11 +1,20 @@
 // ignore_for_file: prefer_const_constructors, library_private_types_in_public_api
 
+import 'package:PLW/screens/registrasi/login_screen.dart';
 import 'package:flutter/material.dart';
 
-// import 'package:daftar_page/screens/otp_screen.dart';
-import 'package:PLW/screens/registrasi/buat_profil_screen.dart';
+import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+// import 'app.dart';
+// import 'firebase_options.dart';
+
+// import 'package:PLW/screens/registrasi/buat_profil_screen.dart';
+
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -29,11 +38,28 @@ class BuatAkunScreen extends StatefulWidget {
 }
 
 class _BuatAkunScreenState extends State<BuatAkunScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordconfirmController =
       TextEditingController();
   bool _isPasswordVisible = false;
   bool _isPasswordConfirmVisible = false;
+  bool _isCreateAccountInProgress = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _passwordconfirmController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +90,27 @@ class _BuatAkunScreenState extends State<BuatAkunScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(45),
                   child: Form(
+                    key: _formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 0),
+                        TextFormField(
+                          controller: _emailController,
+                          maxLines: 1,
+                          decoration: InputDecoration(
+                            labelText: "Email",
+                            hintText: "Masukkan Email",
+                            prefixIcon: Icon(
+                              Icons.mail,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(),
+                            ),
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        const SizedBox(height: 20),
                         TextFormField(
                           controller: _passwordController,
                           maxLines: 1,
@@ -134,6 +177,7 @@ class _BuatAkunScreenState extends State<BuatAkunScreen> {
                           child: ElevatedButton(
                             onPressed: () => submit(
                               context,
+                              _emailController.text,
                               _passwordController.text,
                               _passwordconfirmController.text,
                             ),
@@ -166,12 +210,13 @@ class _BuatAkunScreenState extends State<BuatAkunScreen> {
     );
   }
 
-  void submit(BuildContext context, String email, String password) {
-    if (email.isEmpty || password.isEmpty) {
+  void submit(BuildContext context, String email, String password,
+      String confirmpassword) {
+    if (email.isEmpty || password.isEmpty || confirmpassword.isEmpty) {
       final snackBar = SnackBar(
         duration: const Duration(seconds: 2),
-        content:
-            const Text("Password dan Konfirmasi Password tidak boleh kosong!"),
+        content: const Text(
+            "Email, Password, dan Konfirmasi Password tidak boleh kosong!"),
         backgroundColor: Colors.red,
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -216,6 +261,31 @@ class _BuatAkunScreenState extends State<BuatAkunScreen> {
                 backgroundColor:
                     MaterialStateProperty.all<Color>(Color(0xFF242F9B)),
               ),
+              onPressed: _isCreateAccountInProgress == true
+                  ? null
+                  : () {
+                      if (_formKey.currentState!.validate() == true) {
+                        createUser(
+                          // name: _nameController.text.trim(),
+                          email: _emailController.text.trim(),
+                          password: _passwordController.text,
+                        ).then((value) {
+                          if (value == true) {
+                            // Navigate to another screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                            );
+
+                            // Clear form fields
+                            _emailController.clear();
+                            _passwordController.clear();
+                            _passwordconfirmController.clear();
+                          }
+                        });
+                      }
+                    },
               child: const Text(
                 'YA',
                 style: TextStyle(
@@ -223,17 +293,74 @@ class _BuatAkunScreenState extends State<BuatAkunScreen> {
                   fontFamily: 'Inter',
                 ),
               ),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const BuatProfilScreen()),
-                );
-              },
             ),
           ],
         );
       },
+    );
+  }
+
+  Future<bool> createUser({
+    // required String name,
+    required String email,
+    required String password,
+  }) async {
+    _isCreateAccountInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      // log(userCredential.user.toString());
+      _isCreateAccountInProgress = false;
+
+      if (mounted) {
+        setState(() {});
+      }
+      showToastMessage('Account create completed.');
+      // await userCredential.user?.updateDisplayName(name);
+      await userCredential.user?.sendEmailVerification();
+      showToastMessage('Account activation URL has been sent to your email.');
+      return true;
+    } on FirebaseAuthException catch (e) {
+      if (e.code.contains('weak-password') == true) {
+        // log('The password provided is too weak.');
+        showToastMessage(
+          'Password Anda terlalu lemah',
+          color: Colors.red,
+        );
+      } else if (e.code.contains('email-already-in-use') == true) {
+        // log('The account already exists for that email.');
+        showToastMessage(
+          'Email yang dimasukkan sudah terdaftar',
+          color: Colors.red,
+        );
+      }
+    } catch (e) {
+      log(e.toString());
+      showToastMessage(
+        e.toString(),
+        color: Colors.red,
+      );
+    }
+
+    _isCreateAccountInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+    return false;
+  }
+
+  void showToastMessage(String content, {Color color = Colors.green}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: color,
+        content: Text(content),
+      ),
     );
   }
 }

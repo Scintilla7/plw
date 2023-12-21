@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:PLW/screens/registrasi/daftar_screen.dart';
 import 'package:PLW/screens/home_screen.dart';
+import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'auth.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,18 +32,39 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  late TextEditingController _emailController = TextEditingController();
+  late TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
+  late bool _isLoginInProgress;
+  late GlobalKey<FormState> _formKey;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _isLoginInProgress = false;
+    _formKey = GlobalKey<FormState>();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(45),
             child: Form(
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -112,11 +136,16 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () => submit(
-                        context,
-                        _emailController.text,
-                        _passwordController.text,
-                      ),
+                      onPressed: _isLoginInProgress == true
+                          ? null
+                          : () {
+                              if (_formKey.currentState!.validate() == true) {
+                                loginUser(
+                                  email: _emailController.text.trim(),
+                                  password: _passwordController.text,
+                                );
+                              }
+                            },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                           Color(0xFF242F9B),
@@ -176,48 +205,118 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ));
   }
-}
 
-void submit(BuildContext context, String email, String password) {
-  if (email.isEmpty || password.isEmpty) {
-    final snackBar = SnackBar(
-      duration: const Duration(seconds: 5),
-      content: const Text("Email dan Password tidak boleh kosong!"),
-      backgroundColor: Colors.red,
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  Future<void> loginUser({
+    required String email,
+    required String password,
+  }) async {
+    _isLoginInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-    return;
+      if (userCredential.user?.emailVerified == false) {
+        _isLoginInProgress = false;
+        showToastMessage(
+          'Tolong konfirmasi akun anda.',
+          color: Colors.red,
+          actionLabel: 'SEND',
+          action: () async {
+            await userCredential.user?.sendEmailVerification();
+            showToastMessage(
+              'URL verifikasi telah terkirim ke email Anda.',
+              color: Colors.green,
+            );
+          },
+        );
+      } else if (userCredential.user?.emailVerified == true) {
+        log('login success');
+        final UserModel user = UserModel(
+          userEmail: email,
+          userId: userCredential.user!.uid,
+        );
+        await UserAuth().saveUserAuth(user);
+
+        // Check if the login was successful before showing the success dialog
+        if (userCredential.user != null) {
+          _isLoginInProgress = false;
+
+          showLoginSuccessDialog(context);
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      print("Firebase Auth Exception: ${e.code}");
+      showToastMessage('Email atau Password salah!', color: Colors.red);
+    } catch (e) {
+      print("General Exception: $e");
+      showToastMessage(e.toString(), color: Colors.red);
+    }
+
+    _isLoginInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
   }
 
-  showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const Text("Login Berhasil"),
-        content: const Text("Anda berhasil login."),
-        actions: [
-          TextButton(
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(Color(0xFF242F9B)),
-            ),
-            child: const Text(
-              'OKE',
-              style: TextStyle(
-                color: Color.fromARGB(255, 250, 250, 250),
-                fontFamily: 'Inter',
+  void showToastMessage(String content,
+      {Color color = Colors.green, VoidCallback? action, String? actionLabel}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: color,
+        content: Text(content),
+        duration: const Duration(seconds: 1), // Set the duration to 2 seconds
+        action: actionLabel == null
+            ? null
+            : SnackBarAction(
+                onPressed: () {
+                  if (action != null) {
+                    action();
+                  }
+                },
+                label: actionLabel,
+                textColor: Colors.white,
+                backgroundColor: Colors.black38,
               ),
+      ),
+    );
+  }
+
+  void showLoginSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Login Berhasil"),
+          content: const Text("Anda berhasil login"),
+          actions: [
+            TextButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Color(0xFF242F9B)),
+              ),
+              child: const Text(
+                'OKE',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 250, 250, 250),
+                  fontFamily: 'Inter',
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                );
+              },
             ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
-              );
-            },
-          ),
-        ],
-      );
-    },
-  );
+          ],
+        );
+      },
+    );
+  }
 }
